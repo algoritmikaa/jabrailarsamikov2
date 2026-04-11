@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsa Dent | Стоимость услуг</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arsa Dent</a>
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="about.html" class="nav-link active">Цены</a></li>
+                    <li><a href="page.html" class="nav-link">Отзывы</a></li>
+                </ul>
+                <div class="theme-toggle-wrapper">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Тёмная/светлая тема">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="pricing-section">
+            <div class="container">
+                <h1 class="page-title fade-up">Стоимость услуг</h1>
+                <div class="price-table-wrapper fade-up">
+                    <table class="price-table">
+                        <thead>
+                            <tr><th>Услуга</th><th>Цена</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Консультация стоматолога</td><td class="price">0 ₽</td></tr>
+                            <tr><td>Лечение кариеса</td><td class="price">от 3 500 ₽</td></tr>
+                            <tr><td>Удаление зуба</td><td class="price">от 2 000 ₽</td></tr>
+                            <tr><td>Профессиональная чистка</td><td class="price">4 500 ₽</td></tr>
+                            <tr><td>Металлокерамическая коронка</td><td class="price">12 000 ₽</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="price-note"><i class="fas fa-info-circle"></i> Точную стоимость уточняйте по телефону <a href="tel:89280237776">89280237776</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Доп. блок с контактами (единообразие) -->
+        <section class="contact-info mini-contacts">
+            <div class="container contact-grid">
+                <div class="contact-block"><i class="fas fa-phone-alt"></i> <a href="tel:89280237776">8 928 023-77-76</a></div>
+                <div class="contact-block"><i class="fas fa-map-marker-alt"></i> ул. Кадырова 35, Старые Атаги</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2025 Arsa Dent — Прозрачные цены и забота о вас.</p>
+            <div class="footer-links"><a href="tel:89280237776"><i class="fas fa-phone-alt"></i> 89280237776</a> <span><i class="fas fa-map-marker-alt"></i> ул. Кадырова 35, Старые Атаги</span></div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        const loadTheme = () => { const saved = localStorage.getItem('theme'); if(saved === 'dark') root.classList.add('dark'); else root.classList.remove('dark'); };
+        loadTheme();
+        themeToggle.addEventListener('click', () => { root.classList.toggle('dark'); localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light'); });
+        // бургер
+        const burger = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        burger.addEventListener('click', () => { navMenu.classList.toggle('open'); burger.classList.toggle('active'); });
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => { navMenu.classList.remove('open'); burger.classList.remove('active'); }));
+    </script>
+</body>
+</html>

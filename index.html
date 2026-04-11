@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Arsa Dent | Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter + Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ШАПКА (навигация + бургер) -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arsa Dent</a>
+            
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Главная</a></li>
+                    <li><a href="about.html" class="nav-link">Цены</a></li>
+                    <li><a href="page.html" class="nav-link">Отзывы</a></li>
+                </ul>
+                <div class="theme-toggle-wrapper">
+                    <button id="themeToggle" class="theme-toggle" aria-label="Тёмная/светлая тема">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero-блок -->
+        <section class="hero">
+            <div class="container hero-content fade-up">
+                <h1 class="hero-title">Arsa Dent</h1>
+                <p class="hero-subtitle">Стоматология вашей улыбки в Старых Атагах</p>
+                <button class="btn btn-primary pulse-btn" id="appointmentBtn">Записаться на приём</button>
+            </div>
+        </section>
+
+        <!-- Карточки услуг -->
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Наши услуги</h2>
+                <div class="services-grid">
+                    <div class="service-card card-hover">
+                        <div class="service-icon"><i class="fas fa-tooth"></i></div>
+                        <h3>Лечение зубов</h3>
+                        <p>Современные методики, безболезненно и надёжно.</p>
+                    </div>
+                    <div class="service-card card-hover">
+                        <div class="service-icon"><i class="fas fa-gem"></i></div>
+                        <h3>Имплантация</h3>
+                        <p>Возвращаем уверенность с биосовместимыми имплантами.</p>
+                    </div>
+                    <div class="service-card card-hover">
+                        <div class="service-icon"><i class="fas fa-smile-wink"></i></div>
+                        <h3>Отбеливание</h3>
+                        <p>Сияющая улыбка за один визит.</p>
+                    </div>
+                    <div class="service-card card-hover">
+                        <div class="service-icon"><i class="fas fa-child"></i></div>
+                        <h3>Детская стоматология</h3>
+                        <p>Лечим с заботой и без страха.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты + время работы -->
+        <section class="contact-info">
+            <div class="container contact-grid">
+                <div class="contact-block fade-up">
+                    <h3><i class="fas fa-map-marker-alt"></i> Адрес</h3>
+                    <p>улица Кадырова 35, Село Старые Атаги</p>
+                </div>
+                <div class="contact-block fade-up">
+                    <h3><i class="fas fa-phone-alt"></i> Телефон</h3>
+                    <p><a href="tel:89280237776" class="phone-link">8 928 023-77-76</a></p>
+                </div>
+                <div class="contact-block fade-up">
+                    <h3><i class="far fa-clock"></i> Время работы</h3>
+                    <p>Пн–Пт: 09:00 – 20:00<br>Сб: 10:00 – 16:00<br>Вс: выходной</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2025 Arsa Dent — Забота о вашей улыбке.</p>
+            <div class="footer-links">
+                <a href="tel:89280237776"><i class="fas fa-phone-alt"></i> 89280237776</a>
+                <span><i class="fas fa-map-marker-alt"></i> ул. Кадырова 35, Старые Атаги</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Тёмная/светлая тема + localStorage
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        const loadTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                root.classList.add('dark');
+            } else {
+                root.classList.remove('dark');
+            }
+        };
+        loadTheme();
+        themeToggle.addEventListener('click', () => {
+            root.classList.toggle('dark');
+            const isDark = root.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+        // Бургер-меню
+        const burger = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        burger.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            burger.classList.toggle('active');
+        });
+        // Кнопка "Записаться" - alert
+        document.getElementById('appointmentBtn')?.addEventListener('click', () => {
+            alert('Спасибо! Мы свяжемся с вами для записи по телефону 89280237776.');
+        });
+        // Закрывать меню при клике на ссылку (мобилка)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                burger.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

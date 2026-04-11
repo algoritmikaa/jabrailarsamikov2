@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsa Dent | Отзывы и о клинике</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Arsa Dent</a>
+            <button class="burger-btn" id="burgerBtn" aria-label="Меню">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="about.html" class="nav-link">Цены</a></li>
+                    <li><a href="page.html" class="nav-link active">Отзывы</a></li>
+                </ul>
+                <div class="theme-toggle-wrapper">
+                    <button id="themeToggle" class="theme-toggle"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- О клинике -->
+        <section class="about-clinic">
+            <div class="container">
+                <h2 class="section-title fade-up">О клинике Arsa Dent</h2>
+                <div class="clinic-text fade-up">
+                    <p>Arsa Dent — это современная стоматология в сердце Старых Атагов. Мы используем оборудование последнего поколения, 3D-томографию и микроскопы для точной диагностики. Наша команда — врачи с 10-летним опытом и постоянным повышением квалификации.</p>
+                    <p>Мы создали пространство, где нет страха и боли. Индивидуальный подход, системы асептики, комфортная атмосфера — всё для вашей спокойной улыбки.</p>
+                    <p>Arsa Dent: лечение, имплантация, эстетика — под одной крышей с заботой о каждом пациенте.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section class="reviews">
+            <div class="container">
+                <h2 class="section-title fade-up">Отзывы наших пациентов</h2>
+                <div class="reviews-grid">
+                    <div class="review-card card-hover">
+                        <div class="review-header"><span class="reviewer-name">Алина М.</span><span class="review-date">12.02.2025</span></div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>Огромное спасибо Arsa Dent! Лечила кариес, всё прошло быстро и абсолютно безболезненно. Врач очень внимательный, атмосфера уютная. Теперь только к вам!</p>
+                    </div>
+                    <div class="review-card card-hover">
+                        <div class="review-header"><span class="reviewer-name">Руслан Т.</span><span class="review-date">05.01.2025</span></div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>Делал имплантацию — результат превзошёл ожидания! Клиника чистая, современное оборудование. Врач объяснил каждый этап. Рекомендую 100%.</p>
+                    </div>
+                    <div class="review-card card-hover">
+                        <div class="review-header"><span class="reviewer-name">Екатерина К.</span><span class="review-date">20.11.2024</span></div>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>Отбеливание прошло супер! Чувствительности почти не было, улыбка сияет. Спасибо Arsa Dent за профессионализм и доброжелательность. Приду снова!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Карта + адрес -->
+        <section class="map-section">
+            <div class="container map-wrapper">
+                <h3 class="map-title"><i class="fas fa-location-dot"></i> Как нас найти</h3>
+                <div class="map-placeholder">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=45.7528,43.1234&z=16&l=map&pt=45.7528,43.1234&text=ул.%20Кадырова%2035,%20Старые%20Атаги" width="100%" height="300" style="border:0; border-radius: 28px;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="map-address">📍 улица Кадырова 35, Село Старые Атаги</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2025 Arsa Dent — Ваша улыбка под надежной защитой.</p>
+            <div class="footer-links"><a href="tel:89280237776"><i class="fas fa-phone-alt"></i> 89280237776</a> <span><i class="fas fa-map-marker-alt"></i> ул. Кадырова 35, Старые Атаги</span></div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        const loadTheme = () => { const saved = localStorage.getItem('theme'); if(saved === 'dark') root.classList.add('dark'); else root.classList.remove('dark'); };
+        loadTheme();
+        themeToggle.addEventListener('click', () => { root.classList.toggle('dark'); localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light'); });
+        const burger = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('navMenu');
+        burger.addEventListener('click', () => { navMenu.classList.toggle('open'); burger.classList.toggle('active'); });
+        document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => { navMenu.classList.remove('open'); burger.classList.remove('active'); }));
+    </script>
+</body>
+</html>

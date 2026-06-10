@@ -7,15 +7,15 @@
 }
 
 :root {
-    /* Светлая тема */
     --bg-body: #ffffff;
     --text-primary: #1E2A3E;
     --text-secondary: #2c3e50;
     --card-bg: #ffffff;
     --header-bg: rgba(255,255,255,0.96);
     --border-color: #eef2f6;
-    --accent: #0D9488;  /* бирюзово-синий акцент */
+    --accent: #0D9488;
     --accent-hover: #0f766e;
+    --accent-soft: rgba(13,148,136,0.10);
     --shadow-sm: 0 20px 35px -12px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.03);
     --shadow-hover: 0 30px 40px -16px rgba(0,0,0,0.15);
     --footer-bg: #f8fafc;
@@ -31,7 +31,9 @@
     --border-color: #2C2C3A;
     --accent: #2aa79b;
     --accent-hover: #3ecfc0;
+    --accent-soft: rgba(42,167,155,0.14);
     --shadow-sm: 0 20px 30px -12px rgba(0,0,0,0.5);
+    --shadow-hover: 0 30px 40px -16px rgba(0,0,0,0.65);
     --footer-bg: #0c0c10;
 }
 
@@ -50,6 +52,10 @@ body {
     padding: 0 24px;
 }
 
+a {
+    color: inherit;
+}
+
 /* ===== АНИМАЦИИ ПОЯВЛЕНИЯ ===== */
 .fade-up {
     animation: fadeUp 0.7s ease forwards;
@@ -64,14 +70,13 @@ body {
     }
 }
 
-/* карточки, секции - появление с задержкой */
-.service-card, .review-card, .price-table-wrapper, .clinic-text, .contact-block {
+.service-card, .review-card, .price-table-wrapper, .clinic-text, .contact-block, .benefit-item, .small-info-card {
     animation: fadeUp 0.6s ease forwards;
     opacity: 0;
 }
-.service-card:nth-child(1) { animation-delay: 0.1s; }
-.service-card:nth-child(2) { animation-delay: 0.2s; }
-.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(1), .benefit-item:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2), .benefit-item:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3), .benefit-item:nth-child(3) { animation-delay: 0.3s; }
 .service-card:nth-child(4) { animation-delay: 0.4s; }
 
 /* ===== ХЕДЕР И БУРГЕР ===== */
@@ -122,6 +127,19 @@ body {
     transition: 0.2s;
     position: relative;
 }
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    border-radius: 20px;
+    background: var(--accent);
+    transition: 0.2s;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
 .nav-link.active {
     color: var(--accent);
     font-weight: 600;
@@ -140,6 +158,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s, background 0.2s;
+    color: var(--text-primary);
 }
 .theme-toggle i:first-child, .theme-toggle i:last-child {
     transition: opacity 0.2s;
@@ -150,7 +169,6 @@ body {
 :root.dark .theme-toggle .fa-moon { display: inline; color: #FFD966; }
 .theme-toggle:hover { transform: rotate(20deg); background: var(--accent); color: white;}
 
-/* бургер */
 .burger-btn {
     display: none;
     background: none;
@@ -201,6 +219,7 @@ body {
     transition: all 0.25s;
     cursor: pointer;
     border: none;
+    text-decoration: none;
 }
 .btn-primary {
     background: var(--accent);
@@ -211,6 +230,15 @@ body {
     background: var(--accent-hover);
     transform: scale(1.02);
     box-shadow: 0 12px 24px rgba(13,148,136,0.4);
+}
+.btn-outline {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    background: transparent;
+}
+.btn-outline:hover {
+    background: var(--accent);
+    color: white;
 }
 .pulse-btn {
     animation: pulse 1.8s infinite;
@@ -223,9 +251,42 @@ body {
 
 /* Hero */
 .hero {
-    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    padding: 92px 0 86px;
     text-align: center;
-    background: radial-gradient(circle at 10% 30%, rgba(13,148,136,0.05), transparent);
+    background:
+        radial-gradient(circle at 10% 30%, rgba(13,148,136,0.10), transparent 35%),
+        linear-gradient(180deg, rgba(13,148,136,0.05), transparent);
+}
+.hero-decor {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 28px solid rgba(13,148,136,0.08);
+    pointer-events: none;
+}
+.hero-decor-1 { top: 45px; left: -70px; }
+.hero-decor-2 { bottom: -80px; right: -45px; }
+.hero-badge,
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid rgba(13,148,136,0.14);
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+.section-label.centered {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 16px;
 }
 .hero-title {
     font-size: 4rem;
@@ -241,7 +302,55 @@ body {
     color: var(--text-secondary);
 }
 
+.section-title,
+.page-title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.3rem;
+    margin-top: 30px;
+}
+.page-title { margin-top: 0; }
+.section-subtitle {
+    max-width: 680px;
+    margin: 14px auto 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+/* ===== Блок преимуществ ===== */
+.quick-benefits {
+    margin-top: -38px;
+    position: relative;
+    z-index: 3;
+}
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.benefit-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 26px;
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+.benefit-item strong {
+    display: block;
+    color: var(--accent);
+    font-size: 2rem;
+    font-family: 'Poppins', sans-serif;
+}
+.benefit-item span {
+    color: var(--text-secondary);
+}
+
 /* Услуги грид */
+.services {
+    padding-top: 30px;
+}
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -262,66 +371,237 @@ body {
     box-shadow: var(--shadow-hover);
 }
 .service-icon {
+    width: 74px;
+    height: 74px;
+    margin: 0 auto 18px;
+    border-radius: 22px;
+    background: var(--accent-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--accent);
+}
+.service-card h3,
+.review-card h3,
+.small-info-card h3 {
+    margin-bottom: 10px;
+}
+.service-card p,
+.review-card p,
+.small-info-card p,
+.clinic-text p {
+    color: var(--text-secondary);
+}
+
+/* Почему мы */
+.why-us {
+    padding: 30px 0;
+}
+.why-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 0.85fr;
+    gap: 28px;
+    align-items: stretch;
+}
+.why-text,
+.why-card,
+.clinic-text {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 32px;
+    box-shadow: var(--shadow-sm);
+    padding: 34px;
+}
+.why-text h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+.why-text p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+.check-list {
+    list-style: none;
+    display: grid;
+    gap: 12px;
+}
+.check-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: var(--text-secondary);
+}
+.check-list i {
+    color: var(--accent);
+    margin-top: 4px;
+}
+.why-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.why-card > i {
     font-size: 3rem;
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 18px;
+}
+.why-card p {
+    color: var(--text-secondary);
+    margin: 10px 0 22px;
 }
 
 /* Контакты грид */
 .contact-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    gap: 24px;
     background: var(--card-bg);
     padding: 40px 30px;
     border-radius: 32px;
     margin: 40px 0;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
 }
 .contact-block {
-    flex: 1;
-    min-width: 180px;
+    flex: 1 1 240px;
+    max-width: 340px;
+    text-align: center;
+    padding: 18px;
+    border-radius: 24px;
+    background: var(--accent-soft);
 }
-.phone-link {
+.contact-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    background: var(--card-bg);
+    color: var(--accent);
+    border-radius: 18px;
+    box-shadow: 0 12px 20px -16px rgba(0,0,0,0.35);
+}
+.contact-block h3 {
+    margin-bottom: 8px;
+}
+.phone-link,
+.contact-block a,
+.price-note a {
     color: var(--accent);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 /* Таблица цен */
+.pricing-section {
+    padding: 54px 0 10px;
+}
 .price-table-wrapper {
     background: var(--card-bg);
     border-radius: 32px;
     padding: 30px;
-    margin: 30px 0;
+    margin: 34px 0 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 .price-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 10px;
 }
-.price-table th, .price-table td {
-    padding: 18px 10px;
-    border-bottom: 1px solid var(--border-color);
+.price-table th,
+.price-table td {
+    padding: 18px 16px;
     text-align: left;
 }
 .price-table th {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--accent);
+    background: var(--accent-soft);
+}
+.price-table th:first-child { border-radius: 18px 0 0 18px; }
+.price-table th:last-child { border-radius: 0 18px 18px 0; }
+.price-table tbody tr:not(.category-row) {
+    background: rgba(148, 163, 184, 0.08);
+    transition: 0.2s;
+}
+.price-table tbody tr:not(.category-row):hover {
+    transform: scale(1.01);
+    background: var(--accent-soft);
+}
+.price-table tbody tr:not(.category-row) td:first-child {
+    border-radius: 18px 0 0 18px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+.price-table tbody tr:not(.category-row) td:last-child {
+    border-radius: 0 18px 18px 0;
+}
+.category-row td {
+    padding: 22px 12px 8px;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.86rem;
+    letter-spacing: 0.08em;
 }
 .price {
-    font-weight: 600;
+    font-weight: 800;
     text-align: right;
+    white-space: nowrap;
+    color: var(--text-primary);
 }
 .price-note {
     margin-top: 25px;
-    background: rgba(13,148,136,0.1);
-    padding: 12px 20px;
+    background: var(--accent-soft);
+    padding: 14px 20px;
     border-radius: 60px;
     display: inline-block;
+    color: var(--text-secondary);
+}
+.price-cards-section {
+    padding-bottom: 10px;
+}
+.price-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+.small-info-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    border-radius: 28px;
+    padding: 28px;
+    text-align: center;
+    transition: var(--transition);
+}
+.small-info-card i {
+    font-size: 2.2rem;
+    color: var(--accent);
+    margin-bottom: 16px;
 }
 
-/* Отзывы */
+/* Отзывы и клиника */
+.about-clinic,
+.reviews {
+    padding-top: 44px;
+}
+.clinic-text {
+    max-width: 920px;
+    margin: 30px auto 0;
+}
+.clinic-text p + p {
+    margin-top: 16px;
+}
 .reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -334,18 +614,25 @@ body {
     padding: 28px;
     transition: var(--transition);
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
 }
 .review-header {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     margin-bottom: 12px;
     font-weight: 600;
+}
+.review-date {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
 }
 .stars {
     color: #FBBF24;
     margin-bottom: 16px;
     letter-spacing: 2px;
 }
+
 /* Карта */
 .map-wrapper {
     background: var(--card-bg);
@@ -353,15 +640,21 @@ body {
     padding: 24px;
     margin: 40px auto;
     box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
 }
 .map-title {
     margin-bottom: 20px;
+    text-align: center;
+}
+.map-title i {
+    color: var(--accent);
 }
 .map-address {
     text-align: center;
     margin-top: 20px;
     font-weight: 500;
 }
+
 /* Footer */
 .footer {
     background: var(--footer-bg);
@@ -380,11 +673,29 @@ body {
     color: var(--text-secondary);
     text-decoration: none;
 }
+
 /* Адаптивность */
+@media (max-width: 900px) {
+    .benefits-grid,
+    .why-grid,
+    .price-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .quick-benefits {
+        margin-top: 20px;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero { padding: 70px 0; }
     .hero-title { font-size: 2.6rem; }
     .hero-subtitle { font-size: 1.1rem; }
+    .section-title,
+    .page-title { font-size: 1.85rem; }
     .contact-grid { flex-direction: column; text-align: center; }
-    .price-table th, .price-table td { font-size: 0.9rem; }
+    .contact-block { max-width: 100%; }
     .container { padding: 0 20px; }
+    .price-table-wrapper { padding: 16px; border-radius: 24px; overflow-x: auto; }
+    .price-table { min-width: 720px; }
+    .price-note { border-radius: 20px; }
 }

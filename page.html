@@ -6,7 +6,7 @@
     <title>Arsa Dent | Отзывы и о клинике</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header">
@@ -24,16 +24,16 @@
                     <li><a href="page.html" class="nav-link active">Отзывы</a></li>
                 </ul>
                 <div class="theme-toggle-wrapper">
-                    <button id="themeToggle" class="theme-toggle"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Тёмная/светлая тема"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
                 </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- О клинике -->
         <section class="about-clinic">
             <div class="container">
+                <span class="section-label centered fade-up">О клинике</span>
                 <h2 class="section-title fade-up">О клинике Arsa Dent</h2>
                 <div class="clinic-text fade-up">
                     <p>Arsa Dent — это современная стоматология в сердце Старых Атагов. Мы используем оборудование последнего поколения, 3D-томографию и микроскопы для точной диагностики. Наша команда — врачи с 10-летним опытом и постоянным повышением квалификации.</p>
@@ -43,10 +43,10 @@
             </div>
         </section>
 
-        <!-- Отзывы -->
         <section class="reviews">
             <div class="container">
                 <h2 class="section-title fade-up">Отзывы наших пациентов</h2>
+                <p class="section-subtitle fade-up">Мы ценим доверие пациентов и стараемся, чтобы каждый визит проходил спокойно.</p>
                 <div class="reviews-grid">
                     <div class="review-card card-hover">
                         <div class="review-header"><span class="reviewer-name">Марьям.Д</span><span class="review-date">12.02.2025</span></div>
@@ -67,7 +67,6 @@
             </div>
         </section>
 
-        <!-- Карта + адрес -->
         <section class="map-section">
             <div class="container map-wrapper">
                 <h3 class="map-title"><i class="fas fa-location-dot"></i> Как нас найти</h3>
